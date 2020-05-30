@@ -6,9 +6,9 @@ Youtube Clone project by using MERN stack (MongoDB, ExpressJS, ReactJS and NodeJ
 
 ## Features
 
--[] Listing all videos
--[] Login
--[] Logout
+- [] Listing all videos
+- [] Login
+- [] Logout
 
 --
 

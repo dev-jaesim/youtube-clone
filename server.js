@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const config = require("./config");
 const port = config.PORT;
 const mongodbURL = config.MONGODB_URL;
@@ -9,6 +10,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 mongoose
   .connect(mongodbURL, {
