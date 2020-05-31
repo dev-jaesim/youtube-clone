@@ -7,6 +7,12 @@ const { auth } = require("../middleware/auth");
 //             User
 //=================================
 
+router.get("/test", (req, res) => {
+  res.status(200).json({
+    message: "test is successful",
+  });
+});
+
 router.get("/auth", auth, (req, res) => {
   res.status(200).json({
     _id: req.user._id,
