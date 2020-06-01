@@ -45,7 +45,7 @@ router.post("/login", (req, res) => {
     if (!user) {
       return res.json({
         loginSuccess: false,
-        message: "No matched email found",
+        message: "No matched email found!",
       });
     }
 
@@ -55,7 +55,7 @@ router.post("/login", (req, res) => {
       if (!isMatched) {
         return res.json({
           loginSuccess: false,
-          message: "Wrong password",
+          message: "Password is wrong!",
         });
       }
 

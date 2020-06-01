@@ -1,13 +1,18 @@
-import React from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { test } from "../../../_actions/user_actions";
 
 function TestPage() {
-  axios.get("/api/users/test").then((response) => {
-    console.log(response.data);
-  });
+  const dispatch = useDispatch();
+  const [msg, setmsg] = useState("");
+
+  useEffect(() => {
+    dispatch(test()).then((response) => setmsg(response.payload.message));
+  }, [dispatch]);
+
   return (
     <div>
-      <h1>Hello from Test Page</h1>
+      <h1>{msg}</h1>
     </div>
   );
 }
