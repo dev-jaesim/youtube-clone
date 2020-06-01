@@ -3,17 +3,27 @@ import { Route, Switch } from "react-router-dom";
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
+import NavPage from "./components/views/NavPage/NavPage";
 import TestPage from "./components/views/TestPage/TestPage";
+import Auth from "./hoc/Auth";
 
 function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/test" component={TestPage} />
-      </Switch>
+      <NavPage />
+      <div
+        style={{
+          paddingTop: "75px",
+          minHeight: "calc(100vh - 80px)",
+        }}
+      >
+        <Switch>
+          <Route exact path="/" component={Auth(LandingPage, null)} />
+          <Route exact path="/login" component={Auth(LoginPage, false)} />
+          <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          <Route exact path="/test" component={TestPage} />
+        </Switch>
+      </div>
     </Suspense>
   );
 }

@@ -42,13 +42,6 @@ function LoginPage(props) {
     }
   };
 
-  const validateMessages = {
-    required: "${name} is required!",
-    types: {
-      email: "Not validate email!",
-    },
-  };
-
   const onFinish = (values) => {
     const formData = {
       email: values.Email,
@@ -77,12 +70,20 @@ function LoginPage(props) {
     >
       <Col className="gutter-row" lg={{ span: 10, offset: 7 }}>
         <Title level={2}>LOGIN</Title>
-        <Form
-          validateMessages={validateMessages}
-          onFinish={onFinish}
-          initialValues={{ Email: email }}
-        >
-          <Form.Item name={"Email"} rules={[{ required: true, type: "email" }]}>
+        <Form onFinish={onFinish} initialValues={{ Email: email }}>
+          <Form.Item
+            name={"Email"}
+            rules={[
+              {
+                type: "email",
+                message: "The input is not valid E-mail!",
+              },
+              {
+                required: true,
+                message: "Please input your E-mail!",
+              },
+            ]}
+          >
             <Input
               value={email}
               type="email"
@@ -90,7 +91,15 @@ function LoginPage(props) {
               placeholder="Enter E-mail"
             />
           </Form.Item>
-          <Form.Item name={"Password"} rules={[{ required: true }]}>
+          <Form.Item
+            name={"Password"}
+            rules={[
+              {
+                required: true,
+                message: "Please input your password!",
+              },
+            ]}
+          >
             <Input.Password
               value={password}
               onChange={handleChange}
