@@ -27,13 +27,25 @@ router.get("/auth", auth, (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-  const user = new User(req.body);
+  User.findOne({ email: req.body.email }, (err, userInfo) => {
+    if (err) return res.status(400).send(err);
 
-  user.save((err, userInfo) => {
-    if (err) return res.json({ success: false, err });
-    return res.status(200).json({
-      success: true,
-      userInfo,
+    if (userInfo) {
+      return res.json({
+        success: false,
+        message: "E-mail already exists!",
+      });
+    }
+
+    const user = new User(req.body);
+
+    user.save((err, userInfo) => {
+      if (err) return res.json({ success: false, err });
+
+      return res.status(200).json({
+        success: true,
+        userInfo,
+      });
     });
   });
 });
