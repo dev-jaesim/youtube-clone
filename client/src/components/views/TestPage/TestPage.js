@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { test } from "../../../_actions/user_actions";
+import { test } from "../../../_actions/video_actions";
 
 function TestPage() {
   const dispatch = useDispatch();

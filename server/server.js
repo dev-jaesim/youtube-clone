@@ -28,6 +28,8 @@ app.get("/", function (req, res) {
   res.send("Server is currently running");
 });
 
+app.use("/uploads", express.static("uploads"));
 app.use("/api/users", require("./routes/userRoute"));
+app.use("/api/videos", require("./routes/videoRoute"));
 
 app.listen(port, () => console.log(`The server is running on the ${port}`));

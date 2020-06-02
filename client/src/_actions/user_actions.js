@@ -4,7 +4,7 @@ import {
   REGISTER_USER,
   AUTH_USER,
   LOGOUT_USER,
-  TEST,
+  TEST_USER,
 } from "./types";
 import { USER_SERVER } from "../components/Config.js";
 
@@ -14,7 +14,7 @@ export function test() {
     .then((response) => response.data);
 
   return {
-    type: TEST,
+    type: TEST_USER,
     payload: request,
   };
 }

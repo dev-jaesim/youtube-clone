@@ -3,8 +3,11 @@ import { Drawer, Button, Input } from "antd";
 import { MenuOutlined, YoutubeFilled } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import LoggedInMenu from "./Sections/LoggedInMenu";
+import { useDispatch } from "react-redux";
+import { addSearchKeyword } from "../../../_actions/video_actions";
 
 function NavPage() {
+  const dispatch = useDispatch();
   const { Search } = Input;
   const [visible, setVisible] = useState(false);
 
@@ -63,7 +66,7 @@ function NavPage() {
         <Col lg={10}>
           <Search
             placeholder="input search text"
-            onSearch={(value) => console.log(value)}
+            onSearch={(value) => dispatch(addSearchKeyword(value))}
             style={{ width: "100%" }}
           />
         </Col>
