@@ -1,25 +1,24 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { listVideo } from "../../../_actions/video_actions";
 import { Link } from "react-router-dom";
-import { Col, Row, Card } from "antd";
-const { Title } = Typography;
+import { Col, Row, Card, Avatar } from "antd";
+import moment from "moment";
 const { Meta } = Card;
 
 function ListVideoPage() {
   const videoState = useSelector((state) => state.video);
 
-  const renderCards = videoState.list.map((video, index) => {
+  const renderCards = videoState.list.map((video) => {
     let minutes = Math.floor(video.duration / 60);
     let seconds = Math.floor(video.duration - minutes * 60);
-    console.log(video);
+    // console.log(video);
     return (
       <Col
         className="gutter-row"
         lg={6}
         md={8}
         xs={24}
-        key={index}
+        key={video._id}
         style={{ padding: "1.5rem" }}
       >
         <div style={{ position: "relative" }}>
@@ -58,10 +57,11 @@ function ListVideoPage() {
           avatar={<Avatar src={video.writer.image} />}
           title={video.title}
         />
-        <span>{video.writer.name} </span>
+        <span>
+          {video.writer.name} - {moment(video.createdAt).format("DD MMM YYYY")}{" "}
+        </span>
         <br />
-        <span style={{ marginLeft: "3rem" }}> {video.views}</span>-{" "}
-        <span> {moment(video.createdAt).format("MMM Do YY")} </span>
+        <span style={{ marginLeft: "3rem" }}> {video.views} views</span>
       </Col>
     );
   });

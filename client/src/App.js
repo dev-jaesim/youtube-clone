@@ -7,6 +7,7 @@ import NavPage from "./components/views/NavPage/NavPage";
 import TestPage from "./components/views/TestPage/TestPage";
 import DefaultPage from "./components/views/DefaultPage/DefaultPage";
 import UploadVideoPage from "./components/views/UploadVideoPage/UploadVideoPage";
+import VideoDetailPage from "./components/views/VideoDetailPage/VideoDetailPage";
 import Auth from "./hoc/Auth";
 
 function App() {
@@ -27,6 +28,11 @@ function App() {
             exact
             path="/video/upload"
             component={Auth(UploadVideoPage, true)}
+          />
+          <Route
+            exact
+            path="/video/:id"
+            component={Auth(VideoDetailPage, null)}
           />
           <Route exact path="/test" component={TestPage} />
           <Route component={DefaultPage} />

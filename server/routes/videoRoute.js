@@ -81,4 +81,35 @@ router.post("/upload", (req, res) => {
   });
 });
 
+router.post("/list", (req, res) => {
+  let skip = req.body.skip;
+  let limit = req.body.limit;
+  let keyword = req.body.searchKeyword
+    ? {
+        title: {
+          $regex: req.body.searchKeyword,
+          $options: "i",
+        },
+      }
+    : {};
+
+  Video.find({ ...keyword })
+    .populate("writer")
+    .skip(skip)
+    .limit(limit)
+    .exec((err, videos) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ videos });
+    });
+});
+
+router.post("/single-video", (req, res) => {
+  Video.findOne({ _id: req.body.id })
+    .populate("writer")
+    .exec((err, video) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ video });
+    });
+});
+
 module.exports = router;

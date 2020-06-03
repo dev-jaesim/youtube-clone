@@ -7,3 +7,5 @@ export const TEST_VIDEO = "test_video";
 export const UPLOAD_VIDEO = "upload_video";
 export const ADD_KEYWORD_VIDEO = "add_keyword_video";
 export const LIST_VIDEO = "list_video";
+export const LOAD_MORE_VIDEO = "load_more_video";
+export const SINGLE_VIDEO = "single_video";

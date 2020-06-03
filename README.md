@@ -12,8 +12,16 @@ Youtube Clone project by using MERN stack (MongoDB, ExpressJS, ReactJS and NodeJ
 - [x] Logout
 - [x] Registration
 - [x] Authentication
+- [x] File upload
+- [x] Thumbnamil generation
 
 ### Frontend
+
+- [x] Login
+- [x] Registration
+- [x] Video upload
+- [ ] Search
+- [ ] Video list
 
 ---
 

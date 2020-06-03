@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TEST_VIDEO, UPLOAD_VIDEO, LIST_VIDEO } from "./types";
+import { TEST_VIDEO, UPLOAD_VIDEO, LIST_VIDEO, SINGLE_VIDEO } from "./types";
 import { VIDEO_SERVER } from "../components/Config.js";
 
 export function test() {
@@ -24,13 +24,25 @@ export function uploadVideo(dataToSubmit) {
   };
 }
 
-export function listVideo(keyword) {
+export function listVideo(variables) {
   const request = axios
-    .post(`${VIDEO_SERVER}/list`, keyword)
+    .post(`${VIDEO_SERVER}/list`, variables)
     .then((response) => response.data);
 
   return {
     type: LIST_VIDEO,
+    payload: request,
+  };
+}
+
+export function getVideo(videoId) {
+  const variable = { id: videoId };
+  const request = axios
+    .post(`${VIDEO_SERVER}/single-video`, variable)
+    .then((response) => response.data);
+
+  return {
+    type: SINGLE_VIDEO,
     payload: request,
   };
 }
