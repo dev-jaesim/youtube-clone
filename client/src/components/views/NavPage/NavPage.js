@@ -4,7 +4,8 @@ import { MenuOutlined, YoutubeFilled } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import LoggedInMenu from "./Sections/LoggedInMenu";
 import { useDispatch } from "react-redux";
-import { addSearchKeyword } from "../../../_actions/video_actions";
+import { ADD_KEYWORD_VIDEO } from "../../../_actions/types";
+import { Link } from "react-router-dom";
 
 function NavPage() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function NavPage() {
   const onClose = () => {
     setVisible(false);
   };
+
   return (
     <nav
       className="menu"
@@ -27,6 +29,7 @@ function NavPage() {
         top: "0",
         padding: ".5rem",
         backgroundColor: "white",
+        zIndex: "999999",
       }}
     >
       <Row type="flex" align="middle">
@@ -45,33 +48,37 @@ function NavPage() {
             <MenuOutlined />
           </Button>
         </Col>
-        <Col lg={5} xs={3}>
-          <YoutubeFilled
-            style={{
-              color: "#f5222d",
-              fontSize: "2rem",
-              verticalAlign: "middle",
-            }}
-          />
-          <span
-            style={{
-              fontSize: "1.5rem",
-              verticalAlign: "middle",
-              color: "rgba(0,0,0,0.9)",
-            }}
-          >
-            &nbsp;YouTube
-          </span>
+        <Col lg={5} xs={0}>
+          <Link to="/">
+            <YoutubeFilled
+              style={{
+                color: "#f5222d",
+                fontSize: "2rem",
+                verticalAlign: "middle",
+              }}
+            />
+            <span
+              style={{
+                fontSize: "1.5rem",
+                verticalAlign: "middle",
+                color: "rgba(0,0,0,0.9)",
+              }}
+            >
+              &nbsp;YouTube
+            </span>
+          </Link>
         </Col>
         <Col lg={10}>
           <Search
             placeholder="input search text"
-            onSearch={(value) => dispatch(addSearchKeyword(value))}
+            onSearch={(value) =>
+              dispatch({ type: ADD_KEYWORD_VIDEO, payload: value })
+            }
             style={{ width: "100%" }}
           />
         </Col>
 
-        <Col lg={7}>
+        <Col lg={7} xs={3}>
           <LoggedInMenu />
         </Col>
 

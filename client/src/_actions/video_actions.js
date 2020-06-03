@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TEST_VIDEO, UPLOAD_VIDEO, ADD_KEYWORD_VIDEO } from "./types";
+import { TEST_VIDEO, UPLOAD_VIDEO, LIST_VIDEO } from "./types";
 import { VIDEO_SERVER } from "../components/Config.js";
 
 export function test() {
@@ -24,9 +24,13 @@ export function uploadVideo(dataToSubmit) {
   };
 }
 
-export function addSearchKeyword(keyword) {
+export function listVideo(keyword) {
+  const request = axios
+    .post(`${VIDEO_SERVER}/list`, keyword)
+    .then((response) => response.data);
+
   return {
-    type: ADD_KEYWORD_VIDEO,
-    payload: keyword,
+    type: LIST_VIDEO,
+    payload: request,
   };
 }

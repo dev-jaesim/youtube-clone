@@ -7,9 +7,10 @@ function TestPage() {
   const [msg, setmsg] = useState("");
 
   useEffect(() => {
-    dispatch(test()).then((response) => setmsg(response.payload.message));
+    dispatch(test()).then(
+      async (response) => await setmsg(response.payload.message)
+    );
   }, [dispatch]);
-
   return (
     <div>
       <h1>{msg}</h1>

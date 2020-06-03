@@ -6,3 +6,4 @@ export const TEST_USER = "test_user";
 export const TEST_VIDEO = "test_video";
 export const UPLOAD_VIDEO = "upload_video";
 export const ADD_KEYWORD_VIDEO = "add_keyword_video";
+export const LIST_VIDEO = "list_video";
