@@ -32,5 +32,6 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/users", require("./routes/userRoute"));
 app.use("/api/videos", require("./routes/videoRoute"));
 app.use("/api/subscriptions", require("./routes/subscriptionRoute"));
+app.use("/api/like-dislike", require("./routes/likeDislikeRoute"));
 
 app.listen(port, () => console.log(`The server is running on the ${port}`));

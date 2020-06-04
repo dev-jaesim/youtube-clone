@@ -5,6 +5,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Row, Col, List, Avatar } from "antd";
 import SideBar from "./Sections/SideBar";
 import SubscriptionPage from "./Sections/SubscriptionPage";
+import LikeDislikePage from "./Sections/LikeDislikePage";
 
 function VideoDetailPage(props) {
   const videoState = useSelector((state) => state.video);
@@ -29,6 +30,10 @@ function VideoDetailPage(props) {
 
             <List.Item
               actions={[
+                <LikeDislikePage
+                  videoId={videoState.singleVideo._id}
+                  userId={userState.userData._id}
+                />,
                 <SubscriptionPage
                   userTo={videoState.singleVideo.writer._id}
                   userFrom={userState.userData._id}
@@ -46,11 +51,7 @@ function VideoDetailPage(props) {
               />
             </List.Item>
 
-            {/* <Comments
-              CommentLists={CommentLists}
-              postId={Video._id}
-              refreshFunction={updateComment}
-            /> */}
+            {/* <Comments videoId={videoState.singleVideo._id} /> */}
           </div>
         </Col>
         <Col lg={6} xs={24}>
