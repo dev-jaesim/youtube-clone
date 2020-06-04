@@ -4,7 +4,7 @@ import { MenuOutlined, YoutubeFilled } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import LoggedInMenu from "./Sections/LoggedInMenu";
 import { useDispatch } from "react-redux";
-import { ADD_KEYWORD_VIDEO } from "../../../_actions/types";
+import { ADD_KEYWORD_VIDEO, RESET_SKIP_VIDEO } from "../../../_actions/types";
 import { Link } from "react-router-dom";
 
 function NavPage() {
@@ -35,7 +35,6 @@ function NavPage() {
       <Row type="flex" align="middle">
         <Col lg={2} xs={3}>
           <Button
-            className="menu__mobile-button"
             type="primary"
             onClick={showDrawer}
             style={{
@@ -48,7 +47,7 @@ function NavPage() {
             <MenuOutlined />
           </Button>
         </Col>
-        <Col lg={5} xs={0}>
+        <Col lg={5} xs={0} onClick={() => dispatch({ type: RESET_SKIP_VIDEO })}>
           <Link to="/">
             <YoutubeFilled
               style={{

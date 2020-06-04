@@ -2,33 +2,59 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideo } from "../../../_actions/video_actions";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Row, Col, List } from "antd";
+import { Row, Col, List, Avatar } from "antd";
+import SideBar from "./Sections/SideBar";
+import SubscriptionPage from "./Sections/SubscriptionPage";
 
 function VideoDetailPage(props) {
-  const Video = useSelector((state) => state.video);
+  const videoState = useSelector((state) => state.video);
+  const userState = useSelector((state) => state.user);
   const videoId = props.match.params.id;
   const dispatch = useDispatch();
-
-  console.log(Video);
 
   useEffect(() => {
     dispatch(getVideo(videoId));
   }, [dispatch, videoId]);
 
-  if (Video.singleVideo) {
+  if (videoState.singleVideo && userState.userData) {
     return (
       <Row>
         <Col lg={18} xs={24}>
           <div style={{ width: "100%", padding: "3rem 4em" }}>
             <video
               style={{ width: "100%" }}
-              src={`http://localhost:5000/${Video.singleVideo.filePath}`}
+              src={`http://localhost:5000/${videoState.singleVideo.filePath}`}
               controls
             />
+
+            <List.Item
+              actions={[
+                <SubscriptionPage
+                  userTo={videoState.singleVideo.writer._id}
+                  userFrom={userState.userData._id}
+                />,
+              ]}
+            >
+              <List.Item.Meta
+                avatar={
+                  <Avatar
+                    src={`http://localhost:5000/${videoState.singleVideo.writer.image}`}
+                  />
+                }
+                title={videoState.singleVideo.title}
+                description={videoState.singleVideo.description}
+              />
+            </List.Item>
+
+            {/* <Comments
+              CommentLists={CommentLists}
+              postId={Video._id}
+              refreshFunction={updateComment}
+            /> */}
           </div>
         </Col>
         <Col lg={6} xs={24}>
-          {/* <SideVideo /> */}
+          <SideBar />
         </Col>
       </Row>
     );

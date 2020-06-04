@@ -1,10 +1,10 @@
 import {
-  TEST_VIDEO,
   UPLOAD_VIDEO,
   ADD_KEYWORD_VIDEO,
   LIST_VIDEO,
   LOAD_MORE_VIDEO,
   SINGLE_VIDEO,
+  RESET_SKIP_VIDEO,
 } from "../_actions/types";
 
 export default function (
@@ -42,9 +42,13 @@ export default function (
       return {
         ...state,
         singleVideo: action.payload.video,
+        skip: 0,
       };
-    case TEST_VIDEO:
-      return { test: action.payload };
+    case RESET_SKIP_VIDEO:
+      return {
+        ...state,
+        skip: 0,
+      };
     default:
       return state;
   }

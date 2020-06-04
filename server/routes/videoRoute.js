@@ -104,11 +104,15 @@ router.post("/list", (req, res) => {
 });
 
 router.post("/single-video", (req, res) => {
-  Video.findOne({ _id: req.body.id })
+  Video.findOneAndUpdate(
+    { _id: req.body.id },
+    { $inc: { views: 1 } },
+    { new: true }
+  )
     .populate("writer")
     .exec((err, video) => {
-      if (err) return res.status(400).send(err);
-      res.status(200).json({ video });
+      if (err) return res.json({ success: false, err });
+      return res.status(200).json({ video });
     });
 });
 

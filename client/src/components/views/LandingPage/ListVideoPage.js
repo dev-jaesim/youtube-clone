@@ -11,7 +11,6 @@ function ListVideoPage() {
   const renderCards = videoState.list.map((video) => {
     let minutes = Math.floor(video.duration / 60);
     let seconds = Math.floor(video.duration - minutes * 60);
-    // console.log(video);
     return (
       <Col
         className="gutter-row"

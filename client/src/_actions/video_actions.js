@@ -1,17 +1,6 @@
 import axios from "axios";
-import { TEST_VIDEO, UPLOAD_VIDEO, LIST_VIDEO, SINGLE_VIDEO } from "./types";
+import { UPLOAD_VIDEO, LIST_VIDEO, SINGLE_VIDEO } from "./types";
 import { VIDEO_SERVER } from "../components/Config.js";
-
-export function test() {
-  const request = axios
-    .get(`${VIDEO_SERVER}/test`)
-    .then((response) => response.data);
-
-  return {
-    type: TEST_VIDEO,
-    payload: request,
-  };
-}
 
 export function uploadVideo(dataToSubmit) {
   const request = axios
