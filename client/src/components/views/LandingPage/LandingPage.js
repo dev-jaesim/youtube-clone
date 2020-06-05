@@ -32,7 +32,6 @@ function LandingPage() {
       {videoState.isLoading ? (
         <div style={{ textAlign: "center" }}>
           <LoadingOutlined style={{ fontSize: "3rem", margin: "3rem" }} />
-          LOADING
         </div>
       ) : (
         <>

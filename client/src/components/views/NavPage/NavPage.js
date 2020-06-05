@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Drawer, Button, Input } from "antd";
 import { MenuOutlined, YoutubeFilled } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import LoggedInMenu from "./Sections/LoggedInMenu";
-import { useDispatch } from "react-redux";
+import LoggedOutMenu from "./Sections/LoggedOutMenu";
+import { useDispatch, useSelector } from "react-redux";
 import { ADD_KEYWORD_VIDEO, RESET_SKIP_VIDEO } from "../../../_actions/types";
 import { Link } from "react-router-dom";
+import { LoadingOutlined } from "@ant-design/icons";
 
 function NavPage() {
+  const userState = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { Search } = Input;
   const [visible, setVisible] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (userState.userData) {
+      if (userState.userData._id) {
+        setLoggedIn(true);
+      }
+    }
+  }, [userState]);
 
   const showDrawer = () => {
-    setVisible(true);
+    setVisible(!visible);
   };
 
   const onClose = () => {
@@ -22,7 +34,6 @@ function NavPage() {
 
   return (
     <nav
-      className="menu"
       style={{
         position: "fixed",
         width: "100%",
@@ -78,7 +89,7 @@ function NavPage() {
         </Col>
 
         <Col lg={7} xs={3}>
-          <LoggedInMenu />
+          {loggedIn ? <LoggedInMenu /> : <LoggedOutMenu />}
         </Col>
 
         <Drawer
@@ -88,7 +99,21 @@ function NavPage() {
           closable={false}
           onClose={onClose}
           visible={visible}
-        ></Drawer>
+        >
+          <div>
+            {userState.userData ? (
+              userState.userData._id ? (
+                <Link to="/subscription">SUBSCRIPTION</Link>
+              ) : (
+                <span>Login first</span>
+              )
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <LoadingOutlined style={{ fontSize: "2rem", margin: "3rem" }} />
+              </div>
+            )}
+          </div>
+        </Drawer>
       </Row>
     </nav>
   );

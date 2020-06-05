@@ -3,6 +3,9 @@ const router = express.Router();
 const multer = require("multer");
 var ffmpeg = require("fluent-ffmpeg");
 const { videoModel: Video } = require("../models/videoModel");
+const {
+  subscriptionModel: Subscription,
+} = require("../models/subscriptionModel");
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -114,6 +117,27 @@ router.post("/single-video", (req, res) => {
       if (err) return res.json({ success: false, err });
       return res.status(200).json({ video });
     });
+});
+
+router.post("/subscription-videos", (req, res) => {
+  Subscription.find({ userFrom: req.body.userFrom }).exec(
+    (err, subscribers) => {
+      if (err) return res.status(400).send(err);
+
+      let subscribingUsers = [];
+
+      subscribers.map((subscriber) => {
+        subscribingUsers.push(subscriber.userTo);
+      });
+
+      Video.find({ writer: { $in: subscribingUsers } })
+        .populate("writer")
+        .exec((err, videos) => {
+          if (err) return res.status(400).send(err);
+          res.status(200).send(videos);
+        });
+    }
+  );
 });
 
 module.exports = router;
