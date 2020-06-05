@@ -14,3 +14,6 @@ export const GET_NUMBER_SUBSCRIPTION = "get_number_subscription";
 export const GET_STATUS_SUBSCRIPTION = "get_status_subscription";
 export const SUBSCRIBE_SUBSCRIPTION = "subscribe_subscription";
 export const UNSUBSCRIBE_SUBSCRIPTION = "unsubscribe_subscription";
+
+export const SAVE_COMMENT = "save_comment";
+export const LIST_COMMENT = "list_comment";

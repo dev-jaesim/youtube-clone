@@ -6,6 +6,7 @@ import { Row, Col, List, Avatar } from "antd";
 import SideBar from "./Sections/SideBar";
 import SubscriptionPage from "./Sections/SubscriptionPage";
 import LikeDislikePage from "./Sections/LikeDislikePage";
+import CommentPage from "./Sections/CommentPage";
 
 function VideoDetailPage(props) {
   const videoState = useSelector((state) => state.video);
@@ -51,7 +52,7 @@ function VideoDetailPage(props) {
               />
             </List.Item>
 
-            {/* <Comments videoId={videoState.singleVideo._id} /> */}
+            <CommentPage videoId={videoState.singleVideo._id} />
           </div>
         </Col>
         <Col lg={6} xs={24}>

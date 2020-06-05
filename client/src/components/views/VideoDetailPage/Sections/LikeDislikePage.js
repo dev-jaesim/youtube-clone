@@ -102,13 +102,15 @@ function LikeDislikePage(props) {
   };
 
   return (
-    <div style={{ position: "relative", top: "-1.5rem" }}>
+    <div
+      style={{ position: "relative", top: props.commentId ? "0" : "-1.5rem" }}
+    >
       <span>
         <Tooltip title="Like">
           {likeAction ? (
-            <LikeFilled onClick={onLike} style={{ fontSize: "1.5rem" }} />
+            <LikeFilled onClick={onLike} style={{ fontSize: "1rem" }} />
           ) : (
-            <LikeOutlined onClick={onLike} style={{ fontSize: "1.5rem" }} />
+            <LikeOutlined onClick={onLike} style={{ fontSize: "1rem" }} />
           )}
         </Tooltip>
         <span style={{ paddingLeft: "8px", cursor: "auto" }}>{likes}</span>
@@ -117,12 +119,9 @@ function LikeDislikePage(props) {
       <span key="comment-basic-dislike">
         <Tooltip title="Dislike">
           {dislikeAction ? (
-            <DislikeFilled onClick={onDislike} style={{ fontSize: "1.5rem" }} />
+            <DislikeFilled onClick={onDislike} style={{ fontSize: "1rem" }} />
           ) : (
-            <DislikeOutlined
-              onClick={onDislike}
-              style={{ fontSize: "1.5rem" }}
-            />
+            <DislikeOutlined onClick={onDislike} style={{ fontSize: "1rem" }} />
           )}
         </Tooltip>
         <span style={{ paddingLeft: "8px", cursor: "auto" }}>{dislikes}</span>
