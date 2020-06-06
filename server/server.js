@@ -29,6 +29,18 @@ app.get("/", function (req, res) {
 });
 
 app.use("/uploads", express.static("uploads"));
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  // index.html for all page routes
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+  });
+}
+
 app.use("/api/users", require("./routes/userRoute"));
 app.use("/api/videos", require("./routes/videoRoute"));
 app.use("/api/subscriptions", require("./routes/subscriptionRoute"));
