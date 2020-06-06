@@ -25,7 +25,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.get("/", function (req, res) {
-  res.send("Server is currently running hello");
+  res.send("Server is currently running test3");
 });
 
 app.use("/uploads", express.static("uploads"));
