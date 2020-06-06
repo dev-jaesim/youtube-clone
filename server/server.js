@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const config = require("./config");
-const port = config.PORT;
+const port = process.env.PORT || config.PORT;
 const mongodbURL = config.MONGODB_URL;
 var cors = require("cors");
 
