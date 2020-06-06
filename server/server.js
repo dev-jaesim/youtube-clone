@@ -24,10 +24,6 @@ mongoose
   .then(() => console.log("MongoDB is successfully connected"))
   .catch((err) => console.log(err));
 
-// app.get("/", function (req, res) {
-//   res.send("Server is currently running test456");
-// });
-
 app.use("/uploads", express.static("uploads"));
 
 // Serve static assets if in production
