@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const config = require("./config");
-const port = process.env.PORT || config.PORT;
+const port = config.PORT;
 const mongodbURL = config.MONGODB_URL;
 var cors = require("cors");
 
@@ -25,7 +25,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.get("/", function (req, res) {
-  res.send("Server is currently running test8");
+  res.send("Server is currently running test456");
 });
 
 app.use("/uploads", express.static("uploads"));
@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === "production") {
 
   // index.html for all page routes
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "..client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
