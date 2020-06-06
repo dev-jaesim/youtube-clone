@@ -19,7 +19,8 @@ export default function (
     case LIST_VIDEO:
       let videos = [];
       if (state.loadMore === false) {
-        videos = [...action.payload.videos];
+        // videos = [...action.payload.videos];
+        videos = action.payload.videos;
       } else {
         if (state.list !== undefined) {
           videos = [...state.list, ...action.payload.videos];
