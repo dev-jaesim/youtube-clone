@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const config = require("./config");
 const port = config.PORT;
 const mongodbURL = config.MONGODB_URL;
+const path = require("path");
 var cors = require("cors");
 
 const app = express();
