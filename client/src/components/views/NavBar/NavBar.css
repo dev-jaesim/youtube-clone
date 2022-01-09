@@ -1,0 +1,26 @@
+.top-menu-bar {
+  display: flex;
+  padding: 1rem;
+}
+
+.top-menu-item {
+  flex-basis: 10%;
+  margin: 0 1rem;
+  display: flex;
+}
+
+.large-item {
+  flex-basis: 70%;
+}
+
+.menu-item-align-middle {
+  justify-content: center;
+}
+
+.menu-item-align-end {
+  justify-content: end;
+}
+
+.logout {
+  cursor: pointer;
+}

@@ -1,6 +1,6 @@
-# MERN Stack Boiler Plate
+# MERN Stack Youtube Clone
 
-Boiler Plate for Web Building Using NodeJS, ExpressJS, React and MongoDB Boiler Plate
+Youtube Clone Project Using NodeJS, ExpressJS, React and MongoDB
 
 ---
 
@@ -11,7 +11,7 @@ Boiler Plate for Web Building Using NodeJS, ExpressJS, React and MongoDB Boiler 
 - [x] Registration
 - [x] Authentication
 - [x] MongoDB connection
-- [] Redux
+- [X] Redux
 
 ---
 
@@ -29,9 +29,19 @@ Boiler Plate for Web Building Using NodeJS, ExpressJS, React and MongoDB Boiler 
 
 ### Frontend
 
+- "@ant-design/icons": "^4.7.0"
+- "@testing-library/jest-dom": "^5.16.1"
+- "@testing-library/react": "^12.1.2"
+- "@testing-library/user-event": "^13.5.0"
+- "antd": "^4.18.2"
 - "axios": "^0.24.0"
 - "react": "^17.0.2"
 - "react-dom": "^17.0.2"
+- "react-icons": "^4.3.1"
+- "react-redux": "^7.2.6"
 - "react-router-dom": "^6.2.1"
 - "react-scripts": "5.0.0"
+- "redux": "^4.1.2"
+- "redux-promise": "^0.6.0"
+- "redux-thunk": "^2.4.1"
 - "web-vitals": "^2.1.2"
