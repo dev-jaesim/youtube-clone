@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../../../_actions/user_action';
+import { loginUser, auth } from '../../../_actions/user_action';
 import { Form, Input, Button, Checkbox, message } from 'antd';
 import { useDispatch } from 'react-redux';
 
@@ -25,6 +25,7 @@ function LoginPage() {
     dispatch(loginUser(formData))
       .then(response => {
         if (response.payload.loginSuccess) {
+          dispatch(auth());
           navigate('/', { replace: true });
         } else {
           message.error(response.payload.message);
