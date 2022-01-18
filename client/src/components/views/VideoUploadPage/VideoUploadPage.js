@@ -53,7 +53,44 @@ function VideoUploadPage() {
 
     const onCategoryChange = e => {
         setCategory(e.currentTarget.value);
-    }
+    };
+
+    const onSubmit = e => {
+        e.preventDefault();
+
+        if (userState.userData && !userState.userData.isAuth) {
+            return alert('Please Log in First');
+        }
+
+        if (VideoTitle === "" || Description === "" ||
+            Category === "" || FilePath === "" ||
+            Duration === "" || ThumbnailPath === "") {
+            return alert('Please first fill all the fields');
+        }
+
+        const variables = {
+            writer: userState.userData._id,
+            title: VideoTitle,
+            description: Description,
+            privacy: Private,
+            filePath: FilePath,
+            category: Category,
+            duration: Duration,
+            thumbnail: ThumbnailPath
+        }
+
+        axios.post('/api/video/uploadVideo', variables)
+            .then(response => {
+                if (response.data.success) {
+                    message.success('video Uploaded Successfully');
+                    setTimeout(() => {
+                        navigate('/', { replace: true });
+                    }, 3000);
+                } else {
+                    message.error('Failed to upload video')
+                }
+            });
+    };
 
     const onDrop = (files) => {
         const formData = new FormData();
@@ -93,7 +130,7 @@ function VideoUploadPage() {
                 <Title level={2}>Upload Video</Title>
             </div>
 
-            <Form wrapperCol={{ span: 16 }} style={{ margin: 'auto'}}>
+            <Form onSubmit={onSubmit} style={{ margin: 'auto'}}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     {/* Drop zone */}
                     <Dropzone
@@ -143,7 +180,7 @@ function VideoUploadPage() {
                     ))}
                 </select>
                 <br /><br />
-                <Button type='primary' size='large'>
+                <Button onClick={onSubmit} type='primary' size='large'>
                     Submit
                 </Button>
             </Form>
