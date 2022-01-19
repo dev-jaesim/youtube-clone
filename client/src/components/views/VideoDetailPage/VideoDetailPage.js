@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Row, Col, List, Avatar, message } from 'antd';
 import axios from 'axios';
+import SideVideo from './Sections/SideVideo';
 
 function VideoDetailPage() {
     const { videoId } = useParams();
@@ -38,7 +39,7 @@ function VideoDetailPage() {
                 </div>
             </Col>
             <Col lg={6} xs={24}>
-                Side Bar
+                <SideVideo />
             </Col>
         </Row>
     );
