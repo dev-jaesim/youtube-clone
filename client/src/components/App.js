@@ -6,7 +6,8 @@ import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer"
-import VideoUploadPage from './views/VideoUploadPage/VideoUploadPage.js';
+import VideoUploadPage from './views/VideoUploadPage/VideoUploadPage';
+import VideoDetailPage from './views/VideoDetailPage/VideoDetailPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/video/upload" element={<VideoUploadPage />} />
+          <Route path="/video/:videoId" element={<VideoDetailPage />} />
         </Routes>
       </div>
       <Footer />
