@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser, auth } from '../../../_actions/user_action';
-import { Form, Input, Button, Checkbox, message } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 
 function LoginPage() {

@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import { Row, Col, List, Avatar, message } from 'antd';
 import axios from 'axios';
 import SideVideo from './Sections/SideVideo';
+import Subscribe from './Sections/Subscribe';
 
 function VideoDetailPage() {
+    const userState = useSelector(state => state.user);
     const { videoId } = useParams();
-    const variable = { videoId: videoId };
     const [VideoDetail, setVideoDetail] = useState([]);
 
     useEffect(() => {
-        axios.post('/api/video/getVideoDetail', variable)
+        axios.post('/api/video/getVideoDetail', { videoId: videoId })
             .then(response => {
                 if(response.data.success) {
                     setVideoDetail(response.data.videoDetail);
                 } else {
                     message.error('Fails to load a video');
                 }
-            })
-    }, []);
+            });
+    }, [videoId]);
 
     return (
         <Row gutter={[16, 16]}>
@@ -26,7 +28,7 @@ function VideoDetailPage() {
                 <div style={{ width: '100%', padding: '3rem 4rem' }}>
                     <video style={{ width: '100%' }} src={VideoDetail.filePath ? `http://localhost:5000/${VideoDetail.filePath}` : ''} controls />
                     <List.Item
-                        actions
+                        actions={[<Subscribe userTo={VideoDetail.writer?._id} userFrom={userState.userData?._id} />]}
                     >
                         <List.Item.Meta
                             avatar={<Avatar src={VideoDetail.writer?.image} />}

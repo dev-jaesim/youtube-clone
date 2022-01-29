@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { auth, logoutUser } from '../../../_actions/user_action';
+import { logoutUser } from '../../../_actions/user_action';
 import './NavBar.css';
 
 function NavBar() {
@@ -37,7 +37,7 @@ function NavBar() {
         </Link>
       </div>
       <div className='top-menu-item large-item menu-item-align-end'>
-        {userState.userData !== undefined && userState.userData.isAuth ? (
+        {userState.userData?.isAuth ? (
             <span onClick={logout} className='logout'>
               Logout
             </span>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import { message } from 'antd';
 
 
@@ -24,17 +25,17 @@ function SideVideo() {
         return (
             <div key={index} style={{ display: 'flex', marginBottom: '1rem', padding: '0 2rem' }}>
                 <div style={{ width: '40%', marginRight: '1rem' }}>
-                    <a href={`/video/${video._id}`}>
+                    <Link to={`/video/${video._id}`}>
                         <img style={{ width: '100%' }} src={`http://localhost:5000/${video.thumbnail}`} alt='thumbnail' />
-                    </a>
+                    </Link>
                 </div>
                 <div style={{ width: '50%' }}>
-                    <a href='#'>
+                    <Link to='#'>
                         <span style={{ fontSize: '1rem', color: 'black' }}> {video.title} </span> <br />
                         <span> {video.writer.name} </span> <br />
                         <span> {video.views} Views </span> <br />
                         <span> {minutes}: {seconds} </span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         );
