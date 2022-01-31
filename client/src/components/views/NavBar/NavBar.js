@@ -29,7 +29,9 @@ function NavBar() {
         Vidoes
       </div>
       <div className='top-menu-item menu-item-align-middle'>
-        Subscription
+        <Link to='/subscription'>
+          <span>Subscription</span>
+        </Link>
       </div>
       <div className='top-menu-item menu-item-align-middle'>
         <Link to='/video/upload'>

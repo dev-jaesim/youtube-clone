@@ -8,6 +8,7 @@ import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer"
 import VideoUploadPage from './views/VideoUploadPage/VideoUploadPage';
 import VideoDetailPage from './views/VideoDetailPage/VideoDetailPage';
+import SubscriptionPage from './views/SubscriptionPage/SubscriptionPage.js';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/video/upload" element={<VideoUploadPage />} />
           <Route path="/video/:videoId" element={<VideoDetailPage />} />
+          <Route path="/subscription" element={<SubscriptionPage />} />
         </Routes>
       </div>
       <Footer />

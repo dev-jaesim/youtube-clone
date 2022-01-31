@@ -33,11 +33,11 @@ function VideoUploadPage() {
     const [Duration, setDuration] = useState('');
     const [ThumbnailPath, setThumbnailPath] = useState('');
 
-    // useEffect(() => {
-    //     if(userState.userData === undefined || !userState.userData.isAuth) {
-    //         navigate('/login');        
-    //     }
-    // });
+    useEffect(() => {
+        if(!userState.userData?.isAuth) {
+            navigate('/login', { replace: true });        
+        }
+    }, []);
 
     const onTitleChange = e => {
         setVideoTitle(e.currentTarget.value);
